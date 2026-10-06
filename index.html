@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Prathiksha S | Java Full Stack Developer & Software Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                screens: {
+                    'xs': '475px',
+                    'sm': '640px',
+                    'md': '768px',
+                    'lg': '1024px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            400: '#38bdf8',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                            900: '#0c4a6e',
+                            950: '#082f49'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+                        mono: ['Fira Code', 'JetBrains Mono', 'monospace'],
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-8px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' }
+                        },
+                        pulseGlow: {
+                            '0%, 100%': { opacity: '0.4', transform: 'scale(1)' },
+                            '50%': { opacity: '0.8', transform: 'scale(1.03)' }
+                        }
+                    },
+                    animation: {
+                        float: 'float 3.5s ease-in-out infinite',
+                        'float-delayed': 'float 4.5s ease-in-out 1.5s infinite',
+                        shimmer: 'shimmer 4s linear infinite',
+                        'pulse-glow': 'pulseGlow 3s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(15, 23, 42, 0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+
+        .brand-text-gradient {
+            background: linear-gradient(90deg, #38bdf8 0%, #818cf8 35%, #c084fc 70%, #38bdf8 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 4s linear infinite;
+        }
+
+        .badge-3d {
+            background: linear-gradient(135deg, #0284c7 0%, #2563eb 50%, #7c3aed 100%);
+            box-shadow: 0 8px 20px -4px rgba(2, 132, 199, 0.5), inset 0 2px 2px rgba(255, 255, 255, 0.3);
+        }
+
+        .nav-link-item {
+            position: relative;
+            transition: all 0.25s ease;
+        }
+        .nav-link-item::before {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 50%;
+            width: 0;
+            height: 2.5px;
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            border-radius: 9999px;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            transform: translateX(-50%);
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.8);
+        }
+        .nav-link-item:hover::before {
+            width: 80%;
+        }
+
+        .nav-hover-backdrop {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            opacity: 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-visualizer-card {
+            background: linear-gradient(145deg, #0f172a 0%, #1e293b 60%, #0f172a 100%);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), 0 0 30px rgba(14, 165, 233, 0.15);
+        }
+
+        .avatar-box {
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), 0 10px 20px rgba(0,0,0,0.3);
+        }
+
+        .pill-3d {
+            background: rgba(15, 23, 42, 0.94);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+        }
+
+        .project-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .project-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -10px rgba(14, 165, 233, 0.25);
+        }
+
+        /* Printable Web Resume Styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #resumePrintArea, #resumePrintArea * {
+                visibility: visible;
+            }
+            #resumePrintArea {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                color: #000 !important;
+                background: #fff !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col selection:bg-brand-500 selection:text-white">
+
+    <!-- Responsive Header Navigation -->
+    <header class="sticky top-0 z-40 glass-nav border-b border-slate-800/80 transition-all duration-300">
+        <div class="h-[2px] w-full bg-gradient-to-r from-transparent via-brand-500/80 to-transparent"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20 relative">
+                
+                <!-- Brand Logo -->
+                <a href="#hero" class="group flex items-center space-x-2.5 sm:space-x-3 py-2 cursor-pointer shrink-0">
+                    <div class="relative">
+                        <div class="absolute -inset-1 rounded-2xl bg-gradient-to-r from-brand-500 via-indigo-500 to-purple-600 opacity-60 blur group-hover:opacity-100 group-hover:scale-110 transition duration-500"></div>
+                        <div class="relative w-10 h-10 sm:w-11 sm:h-11 rounded-xl badge-3d flex items-center justify-center text-white font-black text-lg sm:text-xl tracking-wider group-hover:rotate-12 transition-transform duration-300">
+                            <span class="drop-shadow-md">PS</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-col">
+                        <div class="flex items-center space-x-1.5">
+                            <span class="font-extrabold text-lg sm:text-2xl tracking-tight text-white group-hover:hidden transition-all">
+                                Prathiksha<span class="text-brand-400">.S</span>
+                            </span>
+                            <span class="font-extrabold text-lg sm:text-2xl tracking-tight brand-text-gradient hidden group-hover:inline-block transition-all">
+                                Prathiksha S ✨
+                            </span>
+                        </div>
+                        <div class="hidden xs:flex items-center space-x-1.5 text-[10px] font-semibold tracking-wider uppercase text-slate-400 group-hover:text-brand-400 transition-colors">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                            <span>Java Full Stack Dev</span>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2 text-xs lg:text-sm font-semibold relative py-1 px-2 rounded-2xl bg-slate-900/60 border border-slate-800/80" id="desktopNav">
+                    <div id="navHoverPill" class="nav-hover-backdrop"></div>
+
+                    <a href="#skills" class="nav-link-item relative z-10 px-3 lg:px-4 py-2 rounded-xl text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors group">
+                        <i data-lucide="layers" class="w-4 h-4 text-brand-400 group-hover:rotate-12 transition-transform"></i>
+                        <span>Skills</span>
+                    </a>
+                    <a href="#projects" class="nav-link-item relative z-10 px-3 lg:px-4 py-2 rounded-xl text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors group">
+                        <i data-lucide="code-2" class="w-4 h-4 text-cyan-400 group-hover:rotate-12 transition-transform"></i>
+                        <span>Projects</span>
+                    </a>
+                    <a href="#experience" class="nav-link-item relative z-10 px-3 lg:px-4 py-2 rounded-xl text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors group">
+                        <i data-lucide="briefcase" class="w-4 h-4 text-purple-400 group-hover:rotate-12 transition-transform"></i>
+                        <span>Experience</span>
+                    </a>
+                    <a href="#achievements" class="nav-link-item relative z-10 px-3 lg:px-4 py-2 rounded-xl text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors group">
+                        <i data-lucide="trophy" class="w-4 h-4 text-amber-400 group-hover:rotate-12 transition-transform"></i>
+                        <span>Achievements</span>
+                    </a>
+                    <a href="#contact" class="nav-link-item relative z-10 px-3 lg:px-4 py-2 rounded-xl text-slate-300 hover:text-white flex items-center gap-1.5 transition-colors group">
+                        <i data-lucide="send" class="w-4 h-4 text-emerald-400 group-hover:rotate-12 transition-transform"></i>
+                        <span>Contact</span>
+                    </a>
+                </nav>
+
+                <!-- Navigation Action Buttons (Resume & Hire Me) -->
+                <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
+                    
+                    <!-- RESUME MODAL TRIGGER BUTTON -->
+                    <button id="openResumeBtn" class="inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-slate-200 bg-slate-900 border border-slate-700 hover:border-brand-500 rounded-xl hover:text-white transition-all gap-1.5 shadow-sm">
+                        <i data-lucide="file-text" class="w-4 h-4 text-brand-400"></i>
+                        <span>Resume</span>
+                    </button>
+
+                    <!-- HIRE ME BUTTON -->
+                    <button id="openHireMeBtn" class="relative group inline-flex items-center justify-center px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-white badge-3d rounded-xl hover:scale-105 transition-all shadow-lg shadow-brand-500/20 gap-1.5">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-300 animate-spin" style="animation-duration: 6s;"></i>
+                        <span>Hire Me</span>
+                    </button>
+
+                    <!-- Mobile Menu Hamburger Button -->
+                    <button id="mobileMenuBtn" aria-label="Toggle Navigation" class="md:hidden p-2 rounded-xl border border-slate-800 bg-slate-900 text-slate-300 hover:text-white hover:border-brand-500/50 transition-all">
+                        <i data-lucide="menu" id="menuOpenIcon" class="w-5 h-5 block"></i>
+                        <i data-lucide="x" id="menuCloseIcon" class="w-5 h-5 hidden"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobileMenu" class="hidden md:hidden border-b border-slate-800 bg-slate-950/95 backdrop-blur-2xl px-4 pt-3 pb-6 space-y-2 opacity-0 transform -translate-y-2">
+            <button id="openResumeMobileBtn" class="w-full mobile-nav-link flex items-center justify-between px-4 py-3 rounded-xl font-bold text-brand-300 bg-brand-950/60 border border-brand-800/60">
+                <span class="flex items-center gap-3">
+                    <i data-lucide="file-text" class="w-5 h-5 text-brand-400"></i>
+                    <span>View &amp; Download Resume</span>
+                </span>
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+            </button>
+            <a href="#skills" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-900 border border-transparent hover:border-slate-800 transition-all">
+                <i data-lucide="layers" class="w-5 h-5 text-brand-400"></i>
+                <span>Skills &amp; Capabilities</span>
+            </a>
+            <a href="#projects" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-900 border border-transparent hover:border-slate-800 transition-all">
+                <i data-lucide="code-2" class="w-5 h-5 text-cyan-400"></i>
+                <span>Featured Projects</span>
+            </a>
+            <a href="#experience" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-900 border border-transparent hover:border-slate-800 transition-all">
+                <i data-lucide="briefcase" class="w-5 h-5 text-purple-400"></i>
+                <span>Internship &amp; Training</span>
+            </a>
+            <a href="#achievements" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-slate-200 hover:bg-slate-900 border border-transparent hover:border-slate-800 transition-all">
+                <i data-lucide="trophy" class="w-5 h-5 text-amber-400"></i>
+                <span>Honors &amp; Awards</span>
+            </a>
+            <a href="#contact" class="mobile-nav-link flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-emerald-300 bg-emerald-950/40 border border-emerald-800/40 transition-all">
+                <i data-lucide="send" class="w-5 h-5 text-emerald-400"></i>
+                <span>Contact Prathiksha</span>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        
+        <!-- Hero Section -->
+        <section id="hero" class="relative py-10 sm:py-16 lg:py-20 overflow-hidden border-b border-slate-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                    
+                    <!-- Left Hero Content -->
+                    <div class="lg:col-span-6 space-y-5 sm:space-y-6 text-center lg:text-left">
+                        
+                        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs sm:text-sm font-semibold bg-brand-950/90 text-brand-300 border border-brand-800/80 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+                            Open to Full Stack Developer &amp; Software Engineer Roles
+                        </div>
+
+                        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                            Hi, I'm <span class="brand-text-gradient">Prathiksha S</span>
+                        </h1>
+                        <p class="text-xl sm:text-2xl font-bold text-slate-200">
+                            Java Full Stack Developer <span class="text-brand-400">&amp;</span> Software Engineer
+                        </p>
+
+                        <p class="text-slate-400 text-sm sm:text-base lg:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                            Computer Applications graduate specialized in building secure, scalable web applications using <strong class="text-slate-200">Spring Boot</strong>, <strong class="text-slate-200">React.js</strong>, <strong class="text-slate-200">MySQL</strong>, and <strong class="text-slate-200">JWT Security</strong>.
+                        </p>
+
+                        <!-- Hover Info Badges (Location & Education) -->
+                        <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2.5 sm:gap-3 text-xs sm:text-sm text-slate-300 pt-1">
+                            
+                            <!-- Location Badge -->
+                            <div class="relative group cursor-pointer">
+                                <div class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 px-3 sm:px-3.5 py-2 rounded-xl border border-slate-800 group-hover:border-brand-500/60 transition-all">
+                                    <i data-lucide="map-pin" class="w-4 h-4 text-brand-400"></i>
+                                    <span class="font-medium">Bengaluru, KA</span>
+                                </div>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-48 sm:w-52 p-3 bg-slate-900 text-xs text-slate-300 rounded-xl border border-brand-500/40 shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all z-30">
+                                    <p class="font-bold text-white flex items-center gap-1"><i data-lucide="building-2" class="w-3.5 h-3.5 text-brand-400"></i> Tech Hub India</p>
+                                    <p class="text-[11px] text-slate-400 mt-1">Based in Bengaluru. Open for on-site &amp; remote roles.</p>
+                                </div>
+                            </div>
+
+                            <!-- Reva University Badge -->
+                            <div class="relative group cursor-pointer">
+                                <div class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 px-3 sm:px-3.5 py-2 rounded-xl border border-slate-800 group-hover:border-brand-500/60 transition-all">
+                                    <i data-lucide="graduation-cap" class="w-4 h-4 text-purple-400"></i>
+                                    <span class="font-medium">REVA University (MCA)</span>
+                                </div>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 bg-slate-900 text-xs text-slate-300 rounded-xl border border-purple-500/40 shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all z-30">
+                                    <p class="font-bold text-white">Master of Computer Applications</p>
+                                    <p class="text-[11px] text-emerald-400 font-bold mt-0.5">CGPA: 9.55 (2025 - Present)</p>
+                                    <p class="text-[10px] text-slate-400 mt-1">REVA University, Bengaluru</p>
+                                </div>
+                            </div>
+
+                            <!-- Sri Sai College Badge -->
+                            <div class="relative group cursor-pointer">
+                                <div class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 px-3 sm:px-3.5 py-2 rounded-xl border border-slate-800 group-hover:border-brand-500/60 transition-all">
+                                    <i data-lucide="award" class="w-4 h-4 text-amber-400"></i>
+                                    <span class="font-medium">Sri Sai College (BCA)</span>
+                                </div>
+                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 p-3 bg-slate-900 text-xs text-slate-300 rounded-xl border border-amber-500/40 shadow-xl opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all z-30">
+                                    <p class="font-bold text-white">Bachelor of Computer Applications</p>
+                                    <p class="text-[11px] text-emerald-400 font-bold mt-0.5">CGPA: 9.48 (2022 - 2025)</p>
+                                    <p class="text-[10px] text-slate-400 mt-1">★ Student of the Year Award</p>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- CTA Actions -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3 sm:gap-4 pt-2">
+                            <a href="#projects" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold text-white badge-3d rounded-xl hover:scale-105 transition-all gap-2 shadow-lg shadow-brand-500/20">
+                                <i data-lucide="code-2" class="w-5 h-5"></i>
+                                Explore Projects
+                            </a>
+                            <button id="openResumeHeroBtn" class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 text-sm sm:text-base font-semibold border border-slate-700 bg-slate-900/80 hover:bg-slate-800 hover:border-brand-500 rounded-xl transition-all gap-2">
+                                <i data-lucide="file-text" class="w-5 h-5 text-brand-400"></i>
+                                View &amp; Download Resume
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <!-- Right Column: 3D Developer Avatar Visualizer -->
+                    <div class="lg:col-span-6 relative py-4 sm:py-6">
+                        <div class="relative max-w-lg mx-auto">
+                            
+                            <!-- Floating 3D Pills -->
+                            <div class="absolute -top-3 -left-2 z-20 animate-float pill-3d px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl border border-red-500/50 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold text-white">
+                                <i data-lucide="code-2" class="w-4 h-4 text-red-400"></i>
+                                <span>Java 8+</span>
+                            </div>
+
+                            <div class="absolute -bottom-3 left-4 z-20 animate-float-delayed pill-3d px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl border border-emerald-500/50 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold text-white">
+                                <i data-lucide="cpu" class="w-4 h-4 text-emerald-400"></i>
+                                <span>Spring Boot</span>
+                            </div>
+
+                            <div class="absolute top-1/3 -right-3 z-20 animate-float pill-3d px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-2xl border border-cyan-500/50 flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold text-white">
+                                <i data-lucide="atom" class="w-4 h-4 text-cyan-400"></i>
+                                <span>React.js</span>
+                            </div>
+
+                            <!-- Inner Dark Glassy Developer Card -->
+                            <div class="hero-visualizer-card rounded-3xl p-5 sm:p-8 text-left relative z-10 my-4">
+                                <div class="flex flex-col xs:flex-row items-center gap-5 sm:gap-6">
+                                    
+                                    <div class="avatar-box w-24 h-24 sm:w-32 sm:h-32 rounded-2xl shrink-0 flex items-center justify-center p-3 relative group">
+                                        <div class="text-4xl sm:text-6xl transform group-hover:scale-110 transition-transform">
+                                            👩‍💻
+                                        </div>
+                                    </div>
+
+                                    <div class="space-y-2 text-center xs:text-left">
+                                        <h3 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">Prathiksha S</h3>
+                                        <p class="text-xs sm:text-sm font-bold text-brand-400">
+                                            Software Engineer • Full Stack Lead
+                                        </p>
+
+                                        <div class="pt-2 flex flex-wrap gap-1.5 sm:gap-2 justify-center xs:justify-start">
+                                            <span class="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 border border-slate-700/80 text-[11px] font-medium">
+                                                REST APIs
+                                            </span>
+                                            <span class="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 border border-slate-700/80 text-[11px] font-medium">
+                                                MySQL
+                                            </span>
+                                            <span class="px-2.5 py-1 rounded-lg bg-slate-900/90 text-slate-300 border border-slate-700/80 text-[11px] font-medium">
+                                                JWT Auth
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Skills Section -->
+        <section id="skills" class="py-14 sm:py-20 lg:py-24 border-b border-slate-800/60 bg-slate-900/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Technical Capabilities</h2>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">Core Stack &amp; Testing Expertise</h3>
+                    <p class="text-slate-400 text-xs sm:text-base">Filter skills by domain to review hands-on proficiencies and developer toolsets.</p>
+                </div>
+
+                <!-- Skill Filter Buttons -->
+                <div class="flex flex-wrap items-center justify-center gap-2 mb-10" id="skillFilterContainer">
+                    <button data-category="all" class="skill-filter-btn active-filter px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-brand-600 text-white shadow-lg shadow-brand-600/30">
+                        All Skills
+                    </button>
+                    <button data-category="backend" class="skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                        Back-End
+                    </button>
+                    <button data-category="frontend" class="skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                        Front-End
+                    </button>
+                    <button data-category="database" class="skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                        Database &amp; Security
+                    </button>
+                    <button data-category="tools" class="skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                        Tools &amp; DevOps
+                    </button>
+                    <button data-category="testing" class="skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                        Testing &amp; Process
+                    </button>
+                </div>
+
+                <!-- Skills Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-5" id="skillsGrid">
+                    
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-red-500/50 hover:shadow-xl hover:shadow-red-500/10 transition-all group" data-category="backend">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-red-950/80 text-red-400 border border-red-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="code-2" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-red-950/60 text-red-300 border border-red-800/40">Core Language</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Java (OOPs &amp; Java 8)</h4>
+                        <p class="text-xs text-slate-400 mt-1">Collections, Multithreading, Exceptions, Streams, Lambda &amp; Optionals.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-red-400">Advanced</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-emerald-500/50 hover:shadow-xl hover:shadow-emerald-500/10 transition-all group" data-category="backend">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-emerald-950/80 text-emerald-400 border border-emerald-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="cpu" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-emerald-950/60 text-emerald-300 border border-emerald-800/40">Framework</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Spring Boot &amp; MVC</h4>
+                        <p class="text-xs text-slate-400 mt-1">Spring Data JPA, Spring Security, RESTful APIs, JDBC, Servlets &amp; JSP.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-emerald-400">Intermediate</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-purple-500/50 hover:shadow-xl hover:shadow-purple-500/10 transition-all group" data-category="database">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-purple-950/80 text-purple-400 border border-purple-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="shield-check" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-purple-950/60 text-purple-300 border border-purple-800/40">Security</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">JWT &amp; Security</h4>
+                        <p class="text-xs text-slate-400 mt-1">Role-based Access Control (Admin/User), Token validation &amp; API security.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-purple-400">Skilled</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-cyan-500/50 hover:shadow-xl hover:shadow-cyan-500/10 transition-all group" data-category="frontend">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-cyan-950/80 text-cyan-400 border border-cyan-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="atom" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-cyan-950/60 text-cyan-300 border border-cyan-800/40">Front-End</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">React.js &amp; UI</h4>
+                        <p class="text-xs text-slate-400 mt-1">Responsive UIs, JSX, State Management, HTML5, CSS3, JavaScript, Bootstrap.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-cyan-400">Skilled</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-blue-500/50 hover:shadow-xl hover:shadow-blue-500/10 transition-all group" data-category="database">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-blue-950/80 text-blue-400 border border-blue-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="database" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-blue-950/60 text-blue-300 border border-blue-800/40">Database</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">MySQL Database</h4>
+                        <p class="text-xs text-slate-400 mt-1">Relational schema design, complex SQL queries, indexing, CRUD operations.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-blue-400">Advanced</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:shadow-xl hover:shadow-amber-500/10 transition-all group" data-category="tools">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-amber-950/80 text-amber-400 border border-amber-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="wrench" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-amber-950/60 text-amber-300 border border-amber-800/40">Tools</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Git, GitHub &amp; Docker</h4>
+                        <p class="text-xs text-slate-400 mt-1">Version control, Postman, Swagger, Spring Tool Suite (STS), Eclipse, JIRA.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-amber-400">Skilled</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-pink-500/50 hover:shadow-xl hover:shadow-pink-500/10 transition-all group" data-category="testing">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-pink-950/80 text-pink-400 border border-pink-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-pink-950/60 text-pink-300 border border-pink-800/40">QA &amp; Process</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Manual &amp; API Testing</h4>
+                        <p class="text-xs text-slate-400 mt-1">Test case design, SDLC, STLC, defect logging &amp; endpoint validation.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-pink-400">Skilled</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-14 sm:py-20 lg:py-24 border-b border-slate-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Featured Projects</h2>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold text-white">Full Stack Software Engineering</h3>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
+                    
+                    <!-- Blog Application Platform -->
+                    <div class="project-card rounded-3xl bg-slate-900 border border-slate-800 hover:border-brand-500/50 p-6 sm:p-8 flex flex-col justify-between relative group">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-4">
+                                <span class="text-[11px] font-extrabold uppercase px-3 py-1 rounded-full bg-emerald-950 text-emerald-300 border border-emerald-800/60 flex items-center gap-1">
+                                    <i data-lucide="check-circle" class="w-3.5 h-3.5 text-emerald-400"></i>
+                                    Real-World Project
+                                </span>
+                                <span class="text-[11px] font-extrabold uppercase px-3 py-1 rounded-full bg-brand-950 text-brand-300 border border-brand-800/60">
+                                    Industry Relevant
+                                </span>
+                                <span class="text-xs text-slate-400 ml-auto font-medium">Team of 2</span>
+                            </div>
+
+                            <h4 class="text-2xl font-extrabold text-white mb-3 group-hover:text-brand-400 transition-colors">
+                                Blog Application Platform
+                            </h4>
+                            <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                                Co-developed a full-stack blogging platform enabling users to create, edit, delete, and view posts with real-time comments and category filtering through a responsive React.js UI.
+                            </p>
+
+                            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300 mb-6">
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                    <span>Designed and built Spring Boot RESTful APIs for user management and post operations.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                    <span>Implemented JWT-based authentication and role-based authorization (Admin/User) to secure REST endpoints.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                    <span>Collaborated seamlessly with teammate using Git and GitHub workflows for modular integration.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Spring Boot</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">React.js</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">MySQL</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Spring Security &amp; JWT</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">JPA</span>
+                        </div>
+                    </div>
+
+                    <!-- Employee Management System -->
+                    <div class="project-card rounded-3xl bg-slate-900 border border-slate-800 hover:border-brand-500/50 p-6 sm:p-8 flex flex-col justify-between relative group">
+                        <div>
+                            <div class="flex flex-wrap items-center gap-2 mb-4">
+                                <span class="text-[11px] font-extrabold uppercase px-3 py-1 rounded-full bg-purple-950 text-purple-300 border border-purple-800/60">
+                                    Student Full Stack Project
+                                </span>
+                                <span class="text-xs text-slate-400 ml-auto font-medium">Solo Lead</span>
+                            </div>
+
+                            <h4 class="text-2xl font-extrabold text-white mb-3 group-hover:text-brand-400 transition-colors">
+                                Employee Management System
+                            </h4>
+                            <p class="text-slate-300 text-sm mb-6 leading-relaxed">
+                                Developed a J2EE web application for employee data handling, attendance tracking, and secure role-based admin operations.
+                            </p>
+
+                            <ul class="space-y-2.5 text-xs sm:text-sm text-slate-300 mb-6">
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                    <span>Built dynamic JSP front-end pages and Servlet-based business logic.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                    <span>Utilized JDBC for efficient MySQL database CRUD operations and data retrieval.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i data-lucide="check" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                    <span>Implemented session management and authentication for admins and employees.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-slate-800">
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">Java</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">JSP &amp; Servlets</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">JDBC</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">MySQL</span>
+                            <span class="text-xs font-semibold px-3 py-1 rounded-lg bg-slate-800 text-slate-300 border border-slate-700">HTML5/CSS3</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="text-center mt-10">
+                    <a href="https://github.com/Prathiksha-s6" target="_blank" rel="noopener" class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold border border-slate-700 bg-slate-900/80 hover:bg-slate-800 hover:border-brand-500 rounded-xl transition-all gap-2">
+                        <i data-lucide="github" class="w-5 h-5 text-brand-400"></i>
+                        View all repositories on GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-14 sm:py-20 lg:py-24 border-b border-slate-800/60 bg-slate-900/40">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Industry Experience</h2>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold text-white">Internship &amp; Training</h3>
+                </div>
+
+                <div class="max-w-3xl mx-auto">
+                    <div class="relative pl-6 sm:pl-8 border-l-2 border-brand-500/50 space-y-10">
+                        
+                        <div class="relative group">
+                            <div class="absolute -left-[31px] sm:-left-[39px] top-0 w-6 h-6 rounded-full bg-slate-950 border-4 border-brand-500 group-hover:scale-125 transition-transform"></div>
+                            
+                            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl">
+                                <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                                    <h4 class="text-xl font-bold text-white">Java Full Stack Intern</h4>
+                                    <span class="text-xs font-bold px-3 py-1 rounded-full bg-brand-950 text-brand-300 border border-brand-800/60">Nov 2024 – May 2025</span>
+                                </div>
+                                <p class="text-sm font-semibold text-brand-400 mb-4">Pentagon Space, Bengaluru, Karnataka</p>
+                                
+                                <ul class="space-y-2 text-xs sm:text-sm text-slate-300">
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                        <span>Completed intensive 6-month hands-on training program in Core Java, JSP, Servlets, SQL, HTML, CSS, and JavaScript.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                        <span>Built real-world mini-projects including e-commerce front-ends and banking/ATM back-ends in Java with complex SQL queries.</span>
+                                    </li>
+                                    <li class="flex items-start gap-2">
+                                        <i data-lucide="check-circle" class="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"></i>
+                                        <span>Collaborated following standard SDLC processes and industry developer workflows.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section id="achievements" class="py-14 sm:py-20 lg:py-24 border-b border-slate-800/60">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Recognition &amp; Leadership</h2>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold text-white">Honors &amp; Achievements</h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+                    
+                    <div class="p-6 rounded-3xl bg-slate-900 border border-amber-500/30 hover:border-amber-500 transition-all flex items-start gap-4 group">
+                        <div class="w-12 h-12 rounded-2xl bg-amber-950/80 text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="trophy" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded bg-amber-950 text-amber-300 border border-amber-800/50">Award</span>
+                            <h4 class="text-lg font-bold text-white mt-2">Student of the Year Award</h4>
+                            <p class="text-xs text-slate-400 mt-1">Sri Sai College for Women (2024 – 2025)</p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">Recognized for outstanding academic performance, leadership, and technical excellence during BCA studies.</p>
+                        </div>
+                    </div>
+
+                    <div class="p-6 rounded-3xl bg-slate-900 border border-purple-500/30 hover:border-purple-500 transition-all flex items-start gap-4 group">
+                        <div class="w-12 h-12 rounded-2xl bg-purple-950/80 text-purple-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                            <i data-lucide="mic" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] font-extrabold uppercase px-2.5 py-1 rounded bg-purple-950 text-purple-300 border border-purple-800/50">Leadership</span>
+                            <h4 class="text-lg font-bold text-white mt-2">Graduation Keynote Speaker</h4>
+                            <p class="text-xs text-slate-400 mt-1">Sri Sai College for Women (2025)</p>
+                            <p class="text-xs text-slate-300 mt-2 leading-relaxed">Selected to deliver the commencement graduation speech before an audience of 150+ students, faculty, and guests.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-14 sm:py-20 lg:py-24">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                    <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Get In Touch</h2>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">Contact</h3>
+                    <p class="text-slate-400 text-xs sm:text-base">Reach out by email, or find me on LinkedIn and GitHub.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 max-w-5xl mx-auto">
+                    
+                    <div class="lg:col-span-12 space-y-4 max-w-xl mx-auto w-full">
+
+                        <a href="mailto:prathikshas368@gmail.com" class="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-brand-500 transition-all flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-brand-950 text-brand-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="mail" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">Email Address</div>
+                                <div class="font-bold text-white text-xs sm:text-sm mt-0.5 break-all">prathikshas368@gmail.com</div>
+                            </div>
+                        </a>
+
+                        <a href="https://linkedin.com/in/Prathiksha-s-tech" target="_blank" class="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-brand-500 transition-all flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-brand-950 text-brand-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="linkedin" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">LinkedIn Profile</div>
+                                <div class="font-bold text-white text-sm mt-0.5">Prathiksha-s-tech</div>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/Prathiksha-s6" target="_blank" class="p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-brand-500 transition-all flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-xl bg-brand-950 text-brand-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                <i data-lucide="github" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-slate-400 font-medium">GitHub Profile</div>
+                                <div class="font-bold text-white text-sm mt-0.5">Prathiksha-s6</div>
+                            </div>
+                        </a>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- RESUME MODAL & PDF VIEWER -->
+    <div id="resumeModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-800 rounded-2xl sm:rounded-3xl w-full max-w-4xl max-h-[92vh] flex flex-col relative shadow-2xl scale-95 transition-transform duration-300" id="resumeModalContent">
+            
+            <!-- Modal Header -->
+            <div class="p-4 sm:p-6 border-b border-slate-800 flex flex-wrap items-center justify-between gap-3 bg-slate-950/80 rounded-t-2xl sm:rounded-t-3xl">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl badge-3d flex items-center justify-center text-white font-bold text-base">
+                        PS
+                    </div>
+                    <div>
+                        <h3 class="text-base sm:text-lg font-bold text-white">Prathiksha S — Resume</h3>
+                        <p class="text-[11px] text-brand-400 font-semibold">Java Full Stack Developer • Bengaluru</p>
+                    </div>
+                </div>
+
+                <!-- View Switcher & Action Controls -->
+                <div class="flex items-center gap-2">
+                    
+                    <!-- View Toggle -->
+                    <div class="hidden xs:flex bg-slate-900 p-1 rounded-xl border border-slate-800 text-xs font-semibold">
+                        <button id="showWebViewBtn" class="px-3 py-1.5 rounded-lg bg-brand-600 text-white shadow">Interactive Web View</button>
+                        <button id="showPdfViewBtn" class="px-3 py-1.5 rounded-lg text-slate-400 hover:text-white">PDF Canvas</button>
+                    </div>
+
+                    <!-- Direct Download Button -->
+                    <a href="Prathiksha_S_Resume_1.pdf" download="Prathiksha_S_Resume_1.pdf" class="px-3.5 py-2 rounded-xl text-xs font-bold text-white badge-3d hover:scale-105 transition-all flex items-center gap-1.5 shadow">
+                        <i data-lucide="download" class="w-3.5 h-3.5"></i>
+                        <span class="hidden sm:inline">Download PDF</span>
+                    </a>
+
+                    <!-- Print Button -->
+                    <button id="printResumeBtn" class="p-2 rounded-xl bg-slate-800 text-slate-300 hover:text-white border border-slate-700" title="Print Resume">
+                        <i data-lucide="printer" class="w-4 h-4"></i>
+                    </button>
+
+                    <!-- Close Modal Button -->
+                    <button id="closeResumeBtn" class="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white border border-slate-700">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Modal Content Body -->
+            <div class="p-4 sm:p-8 overflow-y-auto flex-grow space-y-6 text-slate-200" id="resumePrintArea">
+                
+                <!-- INTERACTIVE WEB VIEW -->
+                <div id="webResumeView" class="space-y-6">
+                    
+                    <!-- Header -->
+                    <div class="border-b border-slate-800 pb-5 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                            <h1 class="text-2xl sm:text-3xl font-extrabold text-white">PRATHIKSHA S</h1>
+                            <p class="text-sm font-bold text-brand-400 mt-0.5">Java Full Stack Developer | Software Engineer</p>
+                        </div>
+                        <div class="text-xs text-slate-300 space-y-1">
+                            <div>✉️ prathikshas368@gmail.com</div>
+                            <div>🔗 linkedin.com/in/Prathiksha-s-tech</div>
+                            <div>💻 github.com/Prathiksha-s6</div>
+                        </div>
+                    </div>
+
+                    <!-- Professional Summary -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2 border-b border-slate-800 pb-1">Professional Summary</h4>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                            Computer Applications graduate with hands-on experience in Java full stack development using Spring Boot, React.js, MySQL and JWT security, plus a solid foundation in software testing. Seeking an entry-level Full Stack Developer or Software Engineer role to build secure, scalable and high-quality applications.
+                        </p>
+                    </div>
+
+                    <!-- Education -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-3 border-b border-slate-800 pb-1">Education</h4>
+                        <div class="space-y-3 text-xs sm:text-sm">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-bold text-white">Master of Computer Applications (MCA)</div>
+                                    <div class="text-slate-400">REVA University, Bengaluru, Karnataka</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-emerald-400">CGPA: 9.55</div>
+                                    <div class="text-slate-500 text-[11px]">2025 - Present</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="font-bold text-white">Bachelor of Computer Applications (BCA)</div>
+                                    <div class="text-slate-400">Sri Sai College for Women, Bengaluru, Karnataka</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="font-bold text-emerald-400">CGPA: 9.48</div>
+                                    <div class="text-slate-500 text-[11px]">2022 - 2025</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Technical Skills -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-2 border-b border-slate-800 pb-1">Technical Skills</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-slate-300">
+                            <div><strong class="text-white">Programming:</strong> Java (OOPs, Collections, Multithreading, Streams, Lambda)</div>
+                            <div><strong class="text-white">Back-End:</strong> Spring Boot, REST APIs, Spring Security, JWT, JDBC, Servlets</div>
+                            <div><strong class="text-white">Front-End:</strong> React.js, HTML5, CSS3, JavaScript, Bootstrap</div>
+                            <div><strong class="text-white">Database &amp; Tools:</strong> MySQL, Git, GitHub, Docker, Postman, STS, VS Code</div>
+                        </div>
+                    </div>
+
+                    <!-- Experience & Projects -->
+                    <div>
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-brand-400 mb-3 border-b border-slate-800 pb-1">Internship &amp; Projects</h4>
+                        <div class="space-y-4 text-xs sm:text-sm">
+                            <div>
+                                <div class="flex justify-between font-bold text-white">
+                                    <span>Java Full Stack Intern — Pentagon Space</span>
+                                    <span class="text-slate-400 text-xs">Nov 2024 – May 2025</span>
+                                </div>
+                                <p class="text-xs text-slate-400 mt-1">Intensive 6-month training program covering Java, Spring Boot, SQL, HTML, CSS &amp; JavaScript. Built banking ATM &amp; E-commerce modules.</p>
+                            </div>
+                            <div>
+                                <div class="font-bold text-white">Blog Application Platform (Real-World Project)</div>
+                                <p class="text-xs text-slate-400 mt-1">Full stack blogging system with Spring Boot, React.js, MySQL, and JWT role-based security.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- PDF IFRAME / FALLBACK CONTAINER -->
+                <div id="pdfResumeView" class="hidden h-[500px] w-full bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex flex-col items-center justify-center text-center p-6">
+                    <iframe src="Prathiksha_S_Resume_1.pdf" class="w-full h-full rounded-xl" title="Prathiksha S Resume PDF"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- HIRE ME MODAL -->
+    <div id="hireMeModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl p-6 sm:p-8 max-w-lg w-full relative shadow-2xl scale-95 transition-transform duration-300" id="hireMeModalContent">
+            <button id="closeHireMeBtn" class="absolute top-4 right-4 p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-12 h-12 rounded-2xl badge-3d flex items-center justify-center text-2xl font-black">
+                    PS
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-white">Hire Prathiksha S</h3>
+                    <p class="text-xs text-brand-400 font-semibold">Java Full Stack Developer</p>
+                </div>
+            </div>
+
+            <p class="text-xs text-slate-300 mb-6 leading-relaxed">
+                Thank you for your interest! Reach out by email to discuss open full-stack developer opportunities.
+            </p>
+
+            <div class="space-y-3 mb-6 text-sm">
+
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                    <span class="text-xs text-slate-400">Email</span>
+                    <a href="mailto:prathikshas368@gmail.com" class="font-bold text-brand-400 hover:underline text-xs sm:text-sm">prathikshas368@gmail.com</a>
+                </div>
+
+                <div class="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-between">
+                    <span class="text-xs text-slate-400">Location</span>
+                    <span class="font-bold text-white text-xs sm:text-sm">Bengaluru, Karnataka</span>
+                </div>
+            </div>
+
+            <a href="mailto:prathikshas368@gmail.com?subject=Job%20Opportunity%20-%20Prathiksha%20S" class="w-full py-3 px-4 rounded-xl text-xs font-bold text-white badge-3d flex items-center justify-center gap-2">
+                <i data-lucide="mail" class="w-4 h-4"></i>
+                Open Email Client Immediately
+            </a>
+        </div>
+    </div>
+
+    <footer class="border-t border-slate-800 bg-slate-950 py-8 text-center text-xs text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div>&copy; 2026 Prathiksha S. All rights reserved.</div>
+            <a href="#hero" class="hover:text-brand-400 transition-colors">Back to top ↑</a>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            // Mobile Menu Control
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const menuOpenIcon = document.getElementById('menuOpenIcon');
+            const menuCloseIcon = document.getElementById('menuCloseIcon');
+
+            function toggleMobileMenu() {
+                const isOpening = mobileMenu.classList.contains('hidden');
+                
+                if (isOpening) {
+                    mobileMenu.classList.remove('hidden');
+                    setTimeout(() => {
+                        mobileMenu.classList.remove('opacity-0', '-translate-y-2');
+                        mobileMenu.classList.add('opacity-100', 'translate-y-0');
+                    }, 10);
+                } else {
+                    mobileMenu.classList.remove('opacity-100', 'translate-y-0');
+                    mobileMenu.classList.add('opacity-0', '-translate-y-2');
+                    setTimeout(() => {
+                        mobileMenu.classList.add('hidden');
+                    }, 300);
+                }
+
+                menuOpenIcon.classList.toggle('hidden', isOpening);
+                menuCloseIcon.classList.toggle('hidden', !isOpening);
+            }
+
+            mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // Desktop Hover Pill Animation Tracking
+            const desktopNav = document.getElementById('desktopNav');
+            const hoverPill = document.getElementById('navHoverPill');
+            const navLinks = desktopNav.querySelectorAll('.nav-link-item');
+
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', (e) => {
+                    const navRect = desktopNav.getBoundingClientRect();
+                    const linkRect = e.target.getBoundingClientRect();
+
+                    hoverPill.style.width = `${linkRect.width}px`;
+                    hoverPill.style.transform = `translateX(${linkRect.left - navRect.left}px)`;
+                    hoverPill.style.opacity = '1';
+                });
+            });
+
+            desktopNav.addEventListener('mouseleave', () => {
+                hoverPill.style.opacity = '0';
+            });
+
+            // Skill Filter Logic
+            const filterButtons = document.querySelectorAll('.skill-filter-btn');
+            const skillCards = document.querySelectorAll('.skill-card');
+
+            filterButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.getAttribute('data-category');
+
+                    filterButtons.forEach(b => {
+                        b.className = "skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800";
+                    });
+                    btn.className = "skill-filter-btn active-filter px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-brand-600 text-white shadow-lg shadow-brand-600/30";
+
+                    skillCards.forEach(card => {
+                        const cardCat = card.getAttribute('data-category');
+                        if (category === 'all' || cardCat === category) {
+                            card.classList.remove('hidden');
+                        } else {
+                            card.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            // Resume Modal Controls
+            const resumeModal = document.getElementById('resumeModal');
+            const resumeModalContent = document.getElementById('resumeModalContent');
+            const openResumeBtn = document.getElementById('openResumeBtn');
+            const openResumeHeroBtn = document.getElementById('openResumeHeroBtn');
+            const openResumeMobileBtn = document.getElementById('openResumeMobileBtn');
+            const closeResumeBtn = document.getElementById('closeResumeBtn');
+
+            function openResumeModal() {
+                resumeModal.classList.remove('opacity-0', 'pointer-events-none');
+                resumeModalContent.classList.remove('scale-95');
+                resumeModalContent.classList.add('scale-100');
+            }
+
+            function closeResumeModal() {
+                resumeModal.classList.add('opacity-0', 'pointer-events-none');
+                resumeModalContent.classList.remove('scale-100');
+                resumeModalContent.classList.add('scale-95');
+            }
+
+            if (openResumeBtn) openResumeBtn.addEventListener('click', openResumeModal);
+            if (openResumeHeroBtn) openResumeHeroBtn.addEventListener('click', openResumeModal);
+            if (openResumeMobileBtn) openResumeMobileBtn.addEventListener('click', openResumeModal);
+            if (closeResumeBtn) closeResumeBtn.addEventListener('click', closeResumeModal);
+
+            resumeModal.addEventListener('click', (e) => {
+                if (e.target === resumeModal) closeResumeModal();
+            });
+
+            // Resume View Switcher (Web vs PDF)
+            const showWebViewBtn = document.getElementById('showWebViewBtn');
+            const showPdfViewBtn = document.getElementById('showPdfViewBtn');
+            const webResumeView = document.getElementById('webResumeView');
+            const pdfResumeView = document.getElementById('pdfResumeView');
+
+            if (showWebViewBtn && showPdfViewBtn) {
+                showWebViewBtn.addEventListener('click', () => {
+                    webResumeView.classList.remove('hidden');
+                    pdfResumeView.classList.add('hidden');
+                    showWebViewBtn.className = "px-3 py-1.5 rounded-lg bg-brand-600 text-white shadow";
+                    showPdfViewBtn.className = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white";
+                });
+
+                showPdfViewBtn.addEventListener('click', () => {
+                    webResumeView.classList.add('hidden');
+                    pdfResumeView.classList.remove('hidden');
+                    showPdfViewBtn.className = "px-3 py-1.5 rounded-lg bg-brand-600 text-white shadow";
+                    showWebViewBtn.className = "px-3 py-1.5 rounded-lg text-slate-400 hover:text-white";
+                });
+            }
+
+            // Print Resume Handler
+            const printResumeBtn = document.getElementById('printResumeBtn');
+            if (printResumeBtn) {
+                printResumeBtn.addEventListener('click', () => {
+                    window.print();
+                });
+            }
+
+            // Hire Me Modal Control
+            const openHireMeBtn = document.getElementById('openHireMeBtn');
+            const closeHireMeBtn = document.getElementById('closeHireMeBtn');
+            const hireMeModal = document.getElementById('hireMeModal');
+            const hireMeModalContent = document.getElementById('hireMeModalContent');
+
+            function openModal() {
+                hireMeModal.classList.remove('opacity-0', 'pointer-events-none');
+                hireMeModalContent.classList.remove('scale-95');
+                hireMeModalContent.classList.add('scale-100');
+            }
+
+            function closeModal() {
+                hireMeModal.classList.add('opacity-0', 'pointer-events-none');
+                hireMeModalContent.classList.remove('scale-100');
+                hireMeModalContent.classList.add('scale-95');
+            }
+
+            if (openHireMeBtn) openHireMeBtn.addEventListener('click', openModal);
+            if (closeHireMeBtn) closeHireMeBtn.addEventListener('click', closeModal);
+            hireMeModal.addEventListener('click', (e) => {
+                if (e.target === hireMeModal) closeModal();
+            });
+        });
+    </script>
+</body>
+</html>
