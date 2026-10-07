@@ -61,7 +61,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@0.469.0"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -186,10 +186,10 @@
 
                     <div class="flex flex-col">
                         <div class="flex items-center space-x-1.5">
-                            <span class="font-extrabold text-lg sm:text-2xl tracking-tight text-white group-hover:hidden transition-all">
+                            <span class="font-extrabold text-base sm:text-2xl tracking-tight text-white group-hover:hidden transition-all">
                                 Prathiksha<span class="text-brand-400">.S</span>
                             </span>
-                            <span class="font-extrabold text-lg sm:text-2xl tracking-tight brand-text-gradient hidden group-hover:inline-block transition-all">
+                            <span class="font-extrabold text-base sm:text-2xl tracking-tight brand-text-gradient hidden group-hover:inline-block transition-all">
                                 Prathiksha S ✨
                             </span>
                         </div>
@@ -230,14 +230,14 @@
                 <div class="flex items-center space-x-2 sm:space-x-3 shrink-0">
                     
                     <!-- RESUME MODAL TRIGGER BUTTON -->
-                    <button id="openResumeBtn" class="inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-slate-200 bg-slate-900 border border-slate-700 hover:border-brand-500 rounded-xl hover:text-white transition-all gap-1.5 shadow-sm">
+                    <button id="openResumeBtn" class="hidden sm:inline-flex items-center justify-center px-3.5 sm:px-4 py-2 text-xs sm:text-sm font-bold text-slate-200 bg-slate-900 border border-slate-700 hover:border-brand-500 rounded-xl hover:text-white transition-all gap-1.5 shadow-sm">
                         <i data-lucide="file-text" class="w-4 h-4 text-brand-400"></i>
                         <span>Resume</span>
                     </button>
 
                     <!-- HIRE ME BUTTON -->
-                    <button id="openHireMeBtn" class="relative group inline-flex items-center justify-center px-4 sm:px-5 py-2 text-xs sm:text-sm font-bold text-white badge-3d rounded-xl hover:scale-105 transition-all shadow-lg shadow-brand-500/20 gap-1.5">
-                        <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-300 animate-spin" style="animation-duration: 6s;"></i>
+                    <button id="openHireMeBtn" class="relative group inline-flex items-center justify-center px-3 sm:px-5 py-2 text-xs sm:text-sm font-bold text-white badge-3d rounded-xl hover:scale-105 transition-all shadow-lg shadow-brand-500/20 gap-1.5">
+                        <i data-lucide="sparkles" class="hidden sm:block w-3.5 h-3.5 text-amber-300 animate-spin" style="animation-duration: 6s;"></i>
                         <span>Hire Me</span>
                     </button>
 
@@ -429,7 +429,7 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="text-center max-w-3xl mx-auto mb-10">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Technical Capabilities</h2>
-                    <h3 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">Core Stack &amp; Testing Expertise</h3>
+                    <h3 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">Core Stack, AI/ML &amp; Testing Expertise</h3>
                     <p class="text-slate-400 text-xs sm:text-base">Filter skills by domain to review hands-on proficiencies and developer toolsets.</p>
                 </div>
 
@@ -452,6 +452,9 @@
                     </button>
                     <button data-category="testing" class="skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
                         Testing &amp; Process
+                    </button>
+                    <button data-category="ai" class="skill-filter-btn px-3.5 py-2 sm:px-4 sm:py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition-all bg-slate-900 text-slate-300 hover:bg-slate-800 border border-slate-800">
+                        AI / ML
                     </button>
                 </div>
 
@@ -560,6 +563,66 @@
                         <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
                             <span>Proficiency</span>
                             <span class="font-bold text-pink-400">Skilled</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all group" data-category="ai">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-sky-950/80 text-sky-400 border border-sky-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="terminal" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-sky-950/60 text-sky-300 border border-sky-800/40">Language</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Python</h4>
+                        <p class="text-xs text-slate-400 mt-1">Core Python, Flask web apps and scripting for data and ML work.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-sky-400">Intermediate</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-violet-500/50 hover:shadow-xl hover:shadow-violet-500/10 transition-all group" data-category="ai">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-violet-950/80 text-violet-400 border border-violet-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="brain-circuit" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-violet-950/60 text-violet-300 border border-violet-800/40">AI / ML</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Machine Learning</h4>
+                        <p class="text-xs text-slate-400 mt-1">Model training and prediction with scikit-learn, including regression.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-violet-400">Foundational</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-teal-500/50 hover:shadow-xl hover:shadow-teal-500/10 transition-all group" data-category="ai">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-teal-950/80 text-teal-400 border border-teal-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="search" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-teal-950/60 text-teal-300 border border-teal-800/40">AI / ML</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">RAG</h4>
+                        <p class="text-xs text-slate-400 mt-1">Retrieval-Augmented Generation: grounding LLM answers in your own documents.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-teal-400">Foundational</span>
+                        </div>
+                    </div>
+
+                    <div class="skill-card p-5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-orange-500/50 hover:shadow-xl hover:shadow-orange-500/10 transition-all group" data-category="tools">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="w-10 h-10 rounded-xl bg-orange-950/80 text-orange-400 border border-orange-800/50 flex items-center justify-center group-hover:scale-110 transition-transform">
+                                <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+                            </div>
+                            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full bg-orange-950/60 text-orange-300 border border-orange-800/40">Productivity</span>
+                        </div>
+                        <h4 class="font-bold text-white text-base">Microsoft Office</h4>
+                        <p class="text-xs text-slate-400 mt-1">Excel (MOS certified), Word and PowerPoint.</p>
+                        <div class="mt-4 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs text-slate-400">
+                            <span>Proficiency</span>
+                            <span class="font-bold text-orange-400">Certified</span>
                         </div>
                     </div>
 
@@ -763,7 +826,7 @@
                 <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
                     <h2 class="text-xs font-bold uppercase tracking-widest text-brand-400 mb-2">Get In Touch</h2>
                     <h3 class="text-2xl sm:text-4xl font-extrabold text-white mb-3">Contact</h3>
-                    <p class="text-slate-400 text-xs sm:text-base">Reach out by email, or find me on LinkedIn and GitHub.</p>
+                    <p class="text-slate-400 text-xs sm:text-base">Open to Full Stack Developer and Software Engineer opportunities. Feel free to get in touch.</p>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 max-w-5xl mx-auto">
@@ -936,7 +999,8 @@
 
                 <!-- PDF IFRAME / FALLBACK CONTAINER -->
                 <div id="pdfResumeView" class="hidden h-[500px] w-full bg-slate-950 rounded-xl overflow-hidden border border-slate-800 flex flex-col items-center justify-center text-center p-6">
-                    <iframe src="Prathiksha_S_Resume_1.pdf" class="w-full h-full rounded-xl" title="Prathiksha S Resume PDF"></iframe>
+                    <div class="md:hidden space-y-4"><p class="text-xs text-slate-400">PDF preview is not supported on most phones.</p><a href="Prathiksha_S_Resume_1.pdf" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold text-white badge-3d"><i data-lucide="file-text" class="w-4 h-4"></i>Open Resume PDF</a></div>
+                    <iframe src="Prathiksha_S_Resume_1.pdf" class="hidden md:block w-full h-full rounded-xl" title="Prathiksha S Resume PDF"></iframe>
                 </div>
 
             </div>
